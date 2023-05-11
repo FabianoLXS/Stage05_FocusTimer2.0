@@ -7,17 +7,59 @@
 :root {
   font-size: 62.5%;
   --bg-color: #E5E5E5;
+  --bg-btnOn: #02799D;
+  --bg-btnOff: #E1E1E6;
   --ff-type: font-family: 'Roboto', sans-serif;
-  
+  --fc-time: #323238; 
 }
 
 body {
-background-color: var(--bg-color);
+  background-color: var(--bg-color);
 }
 
-h1{
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 19.2rem;
+  height: 90vh;
+}
+
+main span{
 font-family: 'Roboto';
 font-weight: 500;
 font-size: 12.6rem;
 line-height: 14.8rem;
+color: var(--fc-time)
 }
+
+
+button {
+  border: none;
+  background: none;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.backGroundSoundButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.2rem;
+  max-width: 30.8rem;
+  max-height: 33.6rem;
+}
+
+.treeButton, .rainButton, .coffeeShopButton, .firePlaceButton { 
+  background-color: var(--bg-btnOn);
+  padding: 4.8rem 4.7rem;
+  border-radius: 2.4rem;  
+}
+
+.timerButtons{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 4rem;
+  }
