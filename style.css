@@ -14,3 +14,10 @@
 body {
 background-color: var(--bg-color);
 }
+
+h1{
+font-family: 'Roboto';
+font-weight: 500;
+font-size: 12.6rem;
+line-height: 14.8rem;
+}
