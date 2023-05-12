@@ -53,8 +53,8 @@ button {
   max-height: 33.6rem;
 }
 
-.treeButton, .rainButton, .coffeeShopButton, .firePlaceButton { 
-  background-color: var(--bg-btnOn);
+.forestButton, .rainButton, .coffeeShopButton, .firePlaceButton { 
+  background-color: var(--bg-btnOff);
   padding: 4.8rem 4.7rem;
   border-radius: 2.4rem;  
 }
@@ -65,7 +65,7 @@ button {
   gap: 4rem;
   }
 
-.pressed {
-  display: none;
-  }
+.soundOn {
+  background-color: var(--bg-btnOn)
+}
 
