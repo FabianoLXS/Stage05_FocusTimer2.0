@@ -66,6 +66,6 @@ button {
   }
 
 .soundOn {
-  background-color: var(--bg-btnOn)
+  background-color: var(--bg-btnOn);
+  fill: #FFFFFF;
 }
-
