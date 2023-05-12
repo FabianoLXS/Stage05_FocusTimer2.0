@@ -37,6 +37,7 @@ color: var(--fc-time)
 button {
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 .player {
@@ -63,3 +64,8 @@ button {
   justify-content: space-evenly;
   gap: 4rem;
   }
+
+.pressed {
+  display: none;
+  }
+
