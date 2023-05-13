@@ -2,8 +2,8 @@ export default function elements() {
   //Timer variables
   const buttonPlay = document.querySelector(".play")
   const buttonStop = document.querySelector(".stop")
-  const buttonPlus = document.querySelector(".plus")
-  const buttonMinus = document.querySelector(".minus")
+  const buttonPlus = document.querySelector(".increase")
+  const buttonMinus = document.querySelector(".decrease")
   
   //Sound variables
   const buttonSoundForest = document.querySelector(".forestButton")
