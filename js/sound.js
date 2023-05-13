@@ -7,6 +7,7 @@ import {
 
 export function Sounds() {
   
+
   function Forest() {
     //Forest Audio
     const forestSound = new Audio("./sound/Floresta.wav")
