@@ -9,6 +9,7 @@
   --bg-color: #E5E5E5;
   --bg-btnOn: #02799D;
   --bg-btnOff: #E1E1E6;
+  --bg-soundOn: #FFFFFF;
   --ff-type: font-family: 'Roboto', sans-serif;
   --fc-time: #323238; 
 }
@@ -67,5 +68,5 @@ button {
 
 .soundOn {
   background-color: var(--bg-btnOn);
-  
+  fill: var(--bg-soundOn);
 }
