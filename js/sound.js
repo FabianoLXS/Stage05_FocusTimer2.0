@@ -1,21 +1,18 @@
-import {
-    buttonSoundForest,
-    buttonSoundRain,
-    buttonSoundCoffeeShop,
-    buttonSoundFirePlace,
-  } from "events.js"
 
-export function Sounds() {
-  
-
+export function Sounds({
+  buttonSoundForest,
+  buttonSoundRain,
+  buttonSoundCoffeeShop,
+  buttonSoundFirePlace,
+}) {
   function Forest() {
     //Forest Audio
     const forestSound = new Audio("./sound/Floresta.wav")
-    
+
     function forestSoundOn() {
       forestSound.play()
     }
-    
+
     function forestSoundOff() {
       forestSound.pause()
     }
@@ -29,15 +26,15 @@ export function Sounds() {
       }
     })
   }
-  
+
   function Rain() {
     //Rain Audio
     const rainSound = new Audio("./sound/Chuva.wav")
-    
+
     function rainSoundOn() {
       rainSound.play()
     }
-    
+
     function rainSoundOff() {
       rainSound.pause()
     }
@@ -51,15 +48,15 @@ export function Sounds() {
       }
     })
   }
-  
+
   function CoffeeShop() {
     //CoffeeShop Audio
     const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
-    
+
     function coffeeShopSoundOn() {
       coffeeShopSound.play()
     }
-    
+
     function coffeeShopSoundOff() {
       coffeeShopSound.pause()
     }
@@ -73,15 +70,15 @@ export function Sounds() {
       }
     })
   }
-  
+
   function FirePlace() {
     //FiePlace Audio
     const firePlaceSound = new Audio("./sound/Lareira.wav")
-    
+
     function firePlaceSoundOn() {
       firePlaceSound.play()
     }
-    
+
     function firePlaceSoundOff() {
       firePlaceSound.pause()
     }
@@ -97,9 +94,9 @@ export function Sounds() {
   }
 
   return {
-  Forest,
-  Rain,
-  CoffeeShop,
-  FirePlace
+    Forest,
+    Rain,
+    CoffeeShop,
+    FirePlace,
   }
 }
