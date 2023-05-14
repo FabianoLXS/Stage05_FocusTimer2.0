@@ -12,6 +12,7 @@
   --bg-soundOn: #FFFFFF;
   --ff-type: font-family: 'Roboto', sans-serif;
   --fc-time: #323238; 
+  --bg-pressedBtn: #02799D;
 }
 
 body {
@@ -69,4 +70,8 @@ button {
 .soundOn {
   background-color: var(--bg-btnOn);
   fill: var(--bg-soundOn);
+}
+
+.pressedButton {
+  fill: var(--bg-pressedBtn);
 }

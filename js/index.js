@@ -1,5 +1,8 @@
-import elements from "./elements.js"
-import Sounds from "./sound.js"
+import "./elements.js"
+import "./sound.js"
+import "./events.js"
+import "./timer.js"
+import "./controls.js"
 
 const elements = elements({
   buttonPlay,
