@@ -9,6 +9,7 @@ const buttonSoundForest = document.querySelector(".forestButton")
 const buttonSoundRain = document.querySelector(".rainButton")
 const buttonSoundCoffeeShop = document.querySelector(".coffeeShopButton")
 const buttonSoundFirePlace = document.querySelector(".firePlaceButton")
+const pathForest = document.querySelector("path.forestButton")
 
 // function Forest() {
   //Forest Audio
@@ -25,9 +26,11 @@ const buttonSoundFirePlace = document.querySelector(".firePlaceButton")
     if (buttonSoundForest.classList.contains("soundOn")) {
       forestSoundOff()
       buttonSoundForest.classList.remove("soundOn")
-    } else {
+      pathForest.classList.remove("soundOn")
+     } else {
       forestSoundOn()
       buttonSoundForest.classList.add("soundOn")
+      pathForest.classList.add("soundOn")
     }
   })
 // }
