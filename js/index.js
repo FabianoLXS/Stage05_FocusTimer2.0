@@ -124,12 +124,31 @@ const pathDecrease = document.querySelector("path.decrease")
 
 //função Play
   buttonPlay.addEventListener("click", function () {
-    if (pathPlay.classList.contains("pressedButton")) {
+    if (
+      pathPlay.classList.contains("pressedButton") &&
+      buttonPause.classList.contains("hide")
+    ) {
       pathPlay.classList.remove("pressedButton")
-      // buttonPlay.classList.add("hide")
-      // buttonPause.classList.remove("hide")
+      buttonPlay.classList.add("hide")
+      buttonPause.classList.remove("hide")
+      buttonPause.classList.add("pressedButton")
     } else {
       pathPlay.classList.add("pressedButton")
+      getMinutes()
+    }
+  })
+
+  //função Pause
+  buttonPause.addEventListener("click", function () {
+    if (
+      buttonPause.classList.contains("pressedButton")
+    ) {
+      buttonPause.classList.add("hide")
+      buttonPause.classList.remove("pressedButton")
+      buttonPlay.classList.remove("hide")
+      pathPlay.classList.add("pressedButton")
+    } else {
+      pathPause.classList.add("pressedButton")
     }
   })
 
@@ -172,7 +191,4 @@ function getMinutes() {
     minutes.textContent = newMinutes || "00"
 }
 
-
-
-buttonPlay.addEventListener("click", getMinutes)
 
