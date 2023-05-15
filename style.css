@@ -6,13 +6,13 @@
 
 :root {
   font-size: 62.5%;
-  --bg-color: #E5E5E5;
+  --bg-color: #FFFFFF;
   --bg-btnOn: #02799D;
   --bg-btnOff: #E1E1E6;
   --bg-soundOn: #FFFFFF;
   --ff-type: font-family: 'Roboto', sans-serif;
   --fc-time: #323238; 
-  --bg-pressedBtn: #02799D;
+  --bg-pressedBtn: #42D3FF;
 }
 
 body {
@@ -74,4 +74,9 @@ button {
 
 .pressedButton {
   fill: var(--bg-pressedBtn);
+  transition: all 80ms ease-in;
+}
+
+.hide {
+  display: none;
 }
