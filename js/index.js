@@ -159,7 +159,9 @@ const pathDecrease = document.querySelector("path.decrease")
       
       pathStop.classList.remove("pressedButton")
     } else {
-      
+      buttonPause.classList.add("hide")
+      buttonPlay.classList.remove("hide")
+      pathPlay.classList.remove("pressedButton")
       pathStop.classList.add("pressedButton")
     }
   })
