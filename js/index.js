@@ -134,6 +134,7 @@ const pathDecrease = document.querySelector("path.decrease")
       buttonPause.classList.add("pressedButton")
     } else {
       pathPlay.classList.add("pressedButton")
+      pathStop.classList.remove("pressedButton")
       getMinutes()
     }
   })
