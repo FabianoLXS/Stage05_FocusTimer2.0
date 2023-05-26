@@ -80,3 +80,7 @@ button {
 .hide {
   display: none;
 }
+
+img {
+max-height: 4.8rem;
+}
