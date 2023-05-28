@@ -123,11 +123,11 @@ const pathDecrease = document.querySelector("path.decrease")
 // }
 
 //função set time
-// time.addEventListener("click", function() {
-//   if (pathPlay.classList = "pressedButton") {
-//     getMinutes()
-//   }
-// })
+time.addEventListener("click", function() {
+  if (pathPlay.classList != "pressedButton") {
+    getMinutes()
+  }
+})
 
 //função Play
   buttonPlay.addEventListener("click", function () {
@@ -202,11 +202,14 @@ function getMinutes() {
 function countDown() {
   setTimeout(function() {
     let seconds = Number(secondsDisplay.textContent)
+    let minutes = Number(minutesDisplay.textContent)
     if (seconds <= 0) {
-      seconds = 60
+      seconds = 60 
+
+      minutesDisplay.textContent = String(minutes - 1).padStart(2,"0")
     }
   
-    secondsDisplay.textContent = seconds - 1
+    secondsDisplay.textContent = String(seconds - 1).padStart(2,"0")
     countDown()
     }, 1000)
     
