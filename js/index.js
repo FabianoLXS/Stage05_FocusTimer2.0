@@ -175,6 +175,7 @@ const pathDecrease = document.querySelector("path.decrease")
     } else {
       
       pathIncrease.classList.add("pressedButton")
+     
     }
   })
 
@@ -194,4 +195,11 @@ function getMinutes() {
     minutes.textContent = newMinutes || "00"
 }
 
+function countdown () {
+  let secondsCountdown = Number(seconds.textContent)
+  while (secondsCountdown >= 0) {
+    seconds.textContent = secondsCountdown - 1
+    console.log(seconds.textContent)
+  }
+}
 
