@@ -1,7 +1,7 @@
 //Timer variables
 const time = document.querySelector(".time")
-const minutes = document.querySelector(".minutes")
-const seconds = document.querySelector(".seconds")
+const minutesDisplay = document.querySelector(".minutes")
+const secondsDisplay = document.querySelector(".seconds")
 
 const buttonPlay = document.querySelector(".play")
 const buttonPause = document.querySelector(".pause")
@@ -122,6 +122,13 @@ const pathDecrease = document.querySelector("path.decrease")
   })
 // }
 
+//função set time
+time.addEventListener("click", function() {
+  if (pathPlay.classList != "pressedButton") {
+    getMinutes()
+  }
+})
+
 //função Play
   buttonPlay.addEventListener("click", function () {
     if (
@@ -134,8 +141,7 @@ const pathDecrease = document.querySelector("path.decrease")
       buttonPause.classList.add("pressedButton")
     } else {
       pathPlay.classList.add("pressedButton")
-      pathStop.classList.remove("pressedButton")
-      getMinutes()
+      countDown()
     }
   })
 
@@ -173,13 +179,12 @@ const pathDecrease = document.querySelector("path.decrease")
       
       pathIncrease.classList.remove("pressedButton")
     } else {
-      
       pathIncrease.classList.add("pressedButton")
      
     }
   })
 
-  //função Descrease
+//função Descrease
   buttonDecrease.addEventListener("click", function () {
     if (pathDecrease.classList.contains("pressedButton")) {
       pathDecrease.classList.remove("pressedButton")
@@ -192,14 +197,21 @@ const pathDecrease = document.querySelector("path.decrease")
 
 function getMinutes() {
     let newMinutes = Number(prompt("Quantos minutos?"))
-    minutes.textContent = newMinutes || "00"
+    minutesDisplay.textContent = newMinutes || "00"
 }
 
-function countdown () {
-  let secondsCountdown = Number(seconds.textContent)
-  while (secondsCountdown >= 0) {
-    seconds.textContent = secondsCountdown - 1
-    console.log(seconds.textContent)
+function countDown() {
+  setTimeout(function() {
+    let seconds = Number(secondsDisplay.textContent)
+    let minutes = Number(minutesDisplay.textContent)
+    if (seconds <= 0) {
+      seconds = 60 
+
+      minutesDisplay.textContent = String(minutes - 1).padStart(2,"0")
+    }
+  
+    secondsDisplay.textContent = String(seconds - 1).padStart(2,"0")
+    countDown()
+    }, 1000)
+    
   }
-}
-
