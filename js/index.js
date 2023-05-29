@@ -144,7 +144,7 @@ buttonPlay.addEventListener("click", function () {
   }
 })
 
-//função Pause
+//Botão Pause
 buttonPause.addEventListener("click", function () {
   if (buttonPause.classList.contains("pressedButton")) {
     buttonPause.classList.add("hide")
@@ -156,7 +156,7 @@ buttonPause.addEventListener("click", function () {
   }
 })
 
-//função Stop
+//Botão Stop
 buttonStop.addEventListener("click", function () {
   if (pathStop.classList.contains("pressedButton")) {
     pathStop.classList.remove("pressedButton")
@@ -165,10 +165,13 @@ buttonStop.addEventListener("click", function () {
     buttonPlay.classList.remove("hide")
     pathPlay.classList.remove("pressedButton")
     pathStop.classList.add("pressedButton")
+    setTimeout(function () {
+      pathStop.classList.remove("pressedButton")
+    }, 120)
+  
   }
 })
-
-//função Increase
+//Botão Increase
 buttonIncrease.addEventListener("click", function () {
   if (pathIncrease.classList.contains("pressedButton")) {
     pathIncrease.classList.remove("pressedButton")
@@ -177,7 +180,7 @@ buttonIncrease.addEventListener("click", function () {
   }
 })
 
-//função Descrease
+//Botão Descrease
 buttonDecrease.addEventListener("click", function () {
   if (pathDecrease.classList.contains("pressedButton")) {
     pathDecrease.classList.remove("pressedButton")
@@ -186,29 +189,46 @@ buttonDecrease.addEventListener("click", function () {
   }
 })
 
-//countdown function
-
+//função para solicitar minutos
 function getMinutes() {
   let newMinutes = Number(prompt("Quantos minutos?"))
-  minutesDisplay.textContent = newMinutes || "00"
+  minutesDisplay.textContent = String(newMinutes).padStart(2, "0")
 }
 
+//função de cronômetro
 function countDown() {
   setTimeout(function () {
     let seconds = Number(secondsDisplay.textContent)
     let minutes = Number(minutesDisplay.textContent)
+    
+    if (minutes <= 0 && seconds <= 1) {
+      pathPlay.classList.remove("pressedButton")
+      buttonPlay.classList.remove("hide")
+      buttonPause.classList.add("hide")
+
+      secondsDisplay.textContent = "00"
+      return
+    }
+    
     if (seconds <= 0) {
-      seconds = 2
+      seconds = 60
 
       minutesDisplay.textContent = String(minutes - 1).padStart(2, "0")
     }
-
-    if (minutes <= 0) {
-      console.log(seconds)
-      return
-    }
-
+    
     secondsDisplay.textContent = String(seconds - 1).padStart(2, "0")
+    
+
     countDown()
   }, 1000)
+}
+
+//função reset controles
+function resetControls() {
+  buttonPlay.classList.remove("hide")
+  buttonPause.classList.add("hide")
+  pathPlay.classList.remove("pressedButton")
+  pathStop.classList.remove("pressedButton")
+  pathDecrease.classList.remove("pressedButton")
+  pathIncrease.classList.remove("pressedButton")
 }
