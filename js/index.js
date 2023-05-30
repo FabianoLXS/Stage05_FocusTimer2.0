@@ -30,6 +30,7 @@ const forestSound = new Audio("./sound/Floresta.wav")
 const rainSound = new Audio("./sound/Chuva.wav")
 const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
 const firePlaceSound = new Audio("./sound/Lareira.wav")
+const kitchenTimer = new Audio("./sound/kitchenTimer.mp3")
 let button
 let ambienceSound
 let imagePath
@@ -37,30 +38,30 @@ let minutes
 let seconds
 
 
-//experimento de refatoração
+//Audio Funcions
 function ambienceSoundPlay(ambienceSound) {
   ambienceSound.play()
+  button.classList.add("soundOn")
+  imagePath.classList.add("soundOn")
 }
 
 function ambienceSoundPause(ambienceSound) {
   ambienceSound.pause()
+  button.classList.remove("soundOn")
+  imagePath.classList.remove("soundOn")
 }
 
 function toggleAmbienceSound(button, imagePath, ambienceSound) {
     if (button.classList.contains("soundOn")) {
       ambienceSoundPause(ambienceSound)
-      button.classList.remove("soundOn")
-      imagePath.classList.remove("soundOn")
     } else {
       ambienceSoundPlay(ambienceSound)
-      button.classList.add("soundOn")
-      imagePath.classList.add("soundOn")
     }
 }
 
 
 
-// teste forest refatorado
+// Forest Audio Funcion
 buttonSoundForest.addEventListener("click", function  (){
   button = buttonSoundForest
   imagePath = pathForest
@@ -70,28 +71,6 @@ buttonSoundForest.addEventListener("click", function  (){
 
 
 
-//Forest Audio
-
-
-// function forestSoundOn() {
-//   forestSound.play()
-// }
-
-// function forestSoundOff() {
-//   forestSound.pause()
-// }
-// buttonSoundForest.addEventListener("click", function () {
-//   if (buttonSoundForest.classList.contains("soundOn")) {
-//     forestSoundOff()
-//     buttonSoundForest.classList.remove("soundOn")
-//     pathForest.classList.remove("soundOn")
-//   } else {
-//     forestSoundOn()
-//     buttonSoundForest.classList.add("soundOn")
-//     pathForest.classList.add("soundOn")
-//   }
-// })
-// }
 
 // function Rain() {
 //Rain Audio
@@ -233,7 +212,7 @@ buttonDecrease.addEventListener("click", function () {
 //Set minutes function
 function setMinutes() {
   minutes = Number(prompt("Quantos minutos?"))
-  updateTimerDsiplay(minutes, 0)
+  updateTimerDisplay(minutes, 0)
 }
 
 //Countdown Function
@@ -245,6 +224,7 @@ function countDown() {
     if (minutes <= 0 && seconds <= 1) {
       resetControls()
       secondsDisplay.textContent = "00"
+      kitchenTimer.play()
       return
     }
     
