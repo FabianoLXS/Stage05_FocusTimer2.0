@@ -25,33 +25,72 @@ const pathStop = document.querySelector("path.stop")
 const pathIncrease = document.querySelector("path.increase")
 const pathDecrease = document.querySelector("path.decrease")
 
-// function Forest() {
-//Forest Audio
+//Ambience Sound variables
 const forestSound = new Audio("./sound/Floresta.wav")
+const rainSound = new Audio("./sound/Chuva.wav")
+const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
+const firePlaceSound = new Audio("./sound/Lareira.wav")
+let ambienceSound
+let imagePath
 
-function forestSoundOn() {
-  forestSound.play()
+//experimento de refatoração
+function ambienceSoundPlay(ambienceSound) {
+  ambienceSound.play()
 }
 
-function forestSoundOff() {
-  forestSound.pause()
+function ambienceSoundPause(ambienceSound) {
+  ambienceSound.pause()
 }
-buttonSoundForest.addEventListener("click", function () {
-  if (buttonSoundForest.classList.contains("soundOn")) {
-    forestSoundOff()
-    buttonSoundForest.classList.remove("soundOn")
-    pathForest.classList.remove("soundOn")
-  } else {
-    forestSoundOn()
-    buttonSoundForest.classList.add("soundOn")
-    pathForest.classList.add("soundOn")
-  }
+
+function toggleAmbienceSound(button, imagePath) {
+    if (button.classList.contains("soundOn")) {
+      ambienceSoundPause()
+      button.classList.remove("soundOn")
+      imagePath.classList.remove("soundOn")
+    } else {
+      ambienceSoundPlay()
+      button.classList.add("soundOn")
+      imagePath.classList.add("soundOn")
+    }
+}
+
+
+
+// teste forest refatorado
+buttonSoundForest.addEventListener("click", function  (){
+  let button = buttonSoundForest
+  let imagePath = pathForest
+  let ambienceSound = forestSound
+  toggleAmbienceSound(button, imagePath, ambienceSound)
 })
+
+
+
+//Forest Audio
+
+
+// function forestSoundOn() {
+//   forestSound.play()
+// }
+
+// function forestSoundOff() {
+//   forestSound.pause()
+// }
+// buttonSoundForest.addEventListener("click", function () {
+//   if (buttonSoundForest.classList.contains("soundOn")) {
+//     forestSoundOff()
+//     buttonSoundForest.classList.remove("soundOn")
+//     pathForest.classList.remove("soundOn")
+//   } else {
+//     forestSoundOn()
+//     buttonSoundForest.classList.add("soundOn")
+//     pathForest.classList.add("soundOn")
+//   }
+// })
 // }
 
 // function Rain() {
 //Rain Audio
-const rainSound = new Audio("./sound/Chuva.wav")
 
 function rainSoundOn() {
   rainSound.play()
@@ -75,7 +114,6 @@ buttonSoundRain.addEventListener("click", function () {
 
 // function CoffeeShop() {
 //CoffeeShop Audio
-const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
 
 function coffeeShopSoundOn() {
   coffeeShopSound.play()
@@ -99,7 +137,6 @@ buttonSoundCoffeeShop.addEventListener("click", function () {
 
 // function FirePlace() {
 //FiePlace Audio
-const firePlaceSound = new Audio("./sound/Lareira.wav")
 
 function firePlaceSoundOn() {
   firePlaceSound.play()
