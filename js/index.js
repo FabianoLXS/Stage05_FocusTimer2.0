@@ -30,8 +30,12 @@ const forestSound = new Audio("./sound/Floresta.wav")
 const rainSound = new Audio("./sound/Chuva.wav")
 const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
 const firePlaceSound = new Audio("./sound/Lareira.wav")
+let button
 let ambienceSound
 let imagePath
+let minutes
+let seconds
+
 
 //experimento de refatoração
 function ambienceSoundPlay(ambienceSound) {
@@ -42,13 +46,13 @@ function ambienceSoundPause(ambienceSound) {
   ambienceSound.pause()
 }
 
-function toggleAmbienceSound(button, imagePath) {
+function toggleAmbienceSound(button, imagePath, ambienceSound) {
     if (button.classList.contains("soundOn")) {
-      ambienceSoundPause()
+      ambienceSoundPause(ambienceSound)
       button.classList.remove("soundOn")
       imagePath.classList.remove("soundOn")
     } else {
-      ambienceSoundPlay()
+      ambienceSoundPlay(ambienceSound)
       button.classList.add("soundOn")
       imagePath.classList.add("soundOn")
     }
@@ -58,9 +62,9 @@ function toggleAmbienceSound(button, imagePath) {
 
 // teste forest refatorado
 buttonSoundForest.addEventListener("click", function  (){
-  let button = buttonSoundForest
-  let imagePath = pathForest
-  let ambienceSound = forestSound
+  button = buttonSoundForest
+  imagePath = pathForest
+  ambienceSound = forestSound
   toggleAmbienceSound(button, imagePath, ambienceSound)
 })
 
@@ -161,7 +165,7 @@ buttonSoundFirePlace.addEventListener("click", function () {
 //função set time
 time.addEventListener("click", function () {
   if (pathPlay.classList != "pressedButton") {
-    getMinutes()
+    setMinutes()
   }
 })
 
@@ -226,46 +230,44 @@ buttonDecrease.addEventListener("click", function () {
   }
 })
 
-//função para solicitar minutos
-function getMinutes() {
-  let newMinutes = Number(prompt("Quantos minutos?"))
-  minutesDisplay.textContent = String(newMinutes).padStart(2, "0")
+//Set minutes function
+function setMinutes() {
+  minutes = Number(prompt("Quantos minutos?"))
+  updateTimerDsiplay(minutes, 0)
 }
 
-//função de cronômetro
+//Countdown Function
 function countDown() {
-  setTimeout(function () {
-    let seconds = Number(secondsDisplay.textContent)
-    let minutes = Number(minutesDisplay.textContent)
+  setTimeout(function (minutes, seconds) {
+    minutes = Number(minutesDisplay.textContent)
+    seconds = Number(secondsDisplay.textContent)
     
     if (minutes <= 0 && seconds <= 1) {
-      pathPlay.classList.remove("pressedButton")
-      buttonPlay.classList.remove("hide")
-      buttonPause.classList.add("hide")
-
+      resetControls()
       secondsDisplay.textContent = "00"
       return
     }
     
     if (seconds <= 0) {
       seconds = 60
-
-      minutesDisplay.textContent = String(minutes - 1).padStart(2, "0")
+      --minutes
     }
-    
-    secondsDisplay.textContent = String(seconds - 1).padStart(2, "0")
-    
-
+    --seconds
+    updateTimerDisplay(minutes, seconds)
     countDown()
   }, 1000)
 }
 
-//função reset controles
+//Reset controls function
 function resetControls() {
   buttonPlay.classList.remove("hide")
   buttonPause.classList.add("hide")
   pathPlay.classList.remove("pressedButton")
   pathStop.classList.remove("pressedButton")
-  pathDecrease.classList.remove("pressedButton")
-  pathIncrease.classList.remove("pressedButton")
 }
+// Update timer display function
+function updateTimerDisplay(minutes, seconds) {
+  minutesDisplay.textContent = String(minutes).padStart(2, "0")
+  secondsDisplay.textContent = String(seconds).padStart(2, "0")
+}
+
