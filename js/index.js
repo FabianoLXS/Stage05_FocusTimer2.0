@@ -62,7 +62,7 @@ function toggleAmbienceSound(button, imagePath, ambienceSound) {
 
 
 
-// Forest Audio Funcion
+// Sound button listener
 buttonSoundForest.addEventListener("click", function  (){
   soundType = "forest"
   soundButton(soundType)
@@ -94,7 +94,7 @@ function soundButton(soundType) {
       button = buttonSoundForest
       imagePath = pathForest
       ambienceSound = forestSound
-      break
+      break;
     case "rain":
       button = buttonSoundRain
       imagePath = pathRain
@@ -130,6 +130,7 @@ buttonPlay.addEventListener("click", function () {
     buttonPlay.classList.add("hide")
     buttonPause.classList.remove("hide")
     buttonPause.classList.add("pressedButton")
+    
   } else {
     pathPlay.classList.add("pressedButton")
     countDown()
