@@ -30,12 +30,13 @@ const forestSound = new Audio("./sound/Floresta.wav")
 const rainSound = new Audio("./sound/Chuva.wav")
 const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
 const firePlaceSound = new Audio("./sound/Lareira.wav")
-const kitchenTimer = new Audio("./sound/kitchenTimer.mp3")
+const kitchenTimerSound = new Audio("./sound/kitchenTimer.mp3")
 let button
 let ambienceSound
 let imagePath
 let minutes
 let seconds
+let soundType
 
 
 //Audio Funcions
@@ -52,94 +53,65 @@ function ambienceSoundPause(ambienceSound) {
 }
 
 function toggleAmbienceSound(button, imagePath, ambienceSound) {
-    if (button.classList.contains("soundOn")) {
-      ambienceSoundPause(ambienceSound)
-    } else {
-      ambienceSoundPlay(ambienceSound)
-    }
+  if (button.classList.contains("soundOn")) {
+    ambienceSoundPause(ambienceSound)
+  } else {
+    ambienceSoundPlay(ambienceSound)
+  }
 }
 
 
 
 // Forest Audio Funcion
 buttonSoundForest.addEventListener("click", function  (){
-  button = buttonSoundForest
-  imagePath = pathForest
-  ambienceSound = forestSound
+  soundType = "forest"
+  soundButton(soundType)
+  toggleAmbienceSound(button, imagePath, ambienceSound)
+})
+
+buttonSoundRain.addEventListener("click", function () {
+  soundType = "rain"
+  soundButton(soundType)
+  toggleAmbienceSound(button, imagePath, ambienceSound)
+})
+
+buttonSoundCoffeeShop.addEventListener("click", function () {
+  soundType = "coffeeShop"
+  soundButton(soundType)
+  toggleAmbienceSound(button, imagePath, ambienceSound)
+})
+
+buttonSoundFirePlace.addEventListener("click", function () {
+  soundType = "firePlace"
+  soundButton(soundType)
   toggleAmbienceSound(button, imagePath, ambienceSound)
 })
 
 
-
-
-// function Rain() {
-//Rain Audio
-
-function rainSoundOn() {
-  rainSound.play()
-}
-
-function rainSoundOff() {
-  rainSound.pause()
-}
-buttonSoundRain.addEventListener("click", function () {
-  if (buttonSoundRain.classList.contains("soundOn")) {
-    rainSoundOff()
-    buttonSoundRain.classList.remove("soundOn")
-    pathRain.classList.remove("soundOn")
-  } else {
-    rainSoundOn()
-    buttonSoundRain.classList.add("soundOn")
-    pathRain.classList.add("soundOn")
+function soundButton(soundType) {
+  switch (soundType) {
+    case "forest":
+      button = buttonSoundForest
+      imagePath = pathForest
+      ambienceSound = forestSound
+      break
+    case "rain":
+      button = buttonSoundRain
+      imagePath = pathRain
+      ambienceSound = rainSound
+      break;
+    case "coffeeShop":
+      button = buttonSoundCoffeeShop
+      imagePath = pathCoffeeShop
+      ambienceSound = coffeeShopSound
+      break;
+    case "firePlace":
+      button = buttonSoundFirePlace
+      imagePath = pathFire
+      ambienceSound = firePlaceSound
+      break;
   }
-})
-// }
-
-// function CoffeeShop() {
-//CoffeeShop Audio
-
-function coffeeShopSoundOn() {
-  coffeeShopSound.play()
 }
-
-function coffeeShopSoundOff() {
-  coffeeShopSound.pause()
-}
-buttonSoundCoffeeShop.addEventListener("click", function () {
-  if (buttonSoundCoffeeShop.classList.contains("soundOn")) {
-    coffeeShopSoundOff()
-    buttonSoundCoffeeShop.classList.remove("soundOn")
-    pathCoffeeShop.classList.remove("soundOn")
-  } else {
-    coffeeShopSoundOn()
-    buttonSoundCoffeeShop.classList.add("soundOn")
-    pathCoffeeShop.classList.add("soundOn")
-  }
-})
-// }
-
-// function FirePlace() {
-//FiePlace Audio
-
-function firePlaceSoundOn() {
-  firePlaceSound.play()
-}
-
-function firePlaceSoundOff() {
-  firePlaceSound.pause()
-}
-buttonSoundFirePlace.addEventListener("click", function () {
-  if (buttonSoundFirePlace.classList.contains("soundOn")) {
-    firePlaceSoundOff()
-    buttonSoundFirePlace.classList.remove("soundOn")
-    pathFire.classList.remove("soundOn")
-  } else {
-    firePlaceSoundOn()
-    buttonSoundFirePlace.classList.add("soundOn")
-    pathFire.classList.add("soundOn")
-  }
-})
-// }
 
 //função set time
 time.addEventListener("click", function () {
@@ -224,7 +196,7 @@ function countDown() {
     if (minutes <= 0 && seconds <= 1) {
       resetControls()
       secondsDisplay.textContent = "00"
-      kitchenTimer.play()
+      kitchenTimerSound.play()
       return
     }
     
@@ -250,4 +222,3 @@ function updateTimerDisplay(minutes, seconds) {
   minutesDisplay.textContent = String(minutes).padStart(2, "0")
   secondsDisplay.textContent = String(seconds).padStart(2, "0")
 }
-
