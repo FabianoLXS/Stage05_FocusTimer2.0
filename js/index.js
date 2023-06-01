@@ -25,189 +25,201 @@ const pathStop = document.querySelector("path.stop")
 const pathIncrease = document.querySelector("path.increase")
 const pathDecrease = document.querySelector("path.decrease")
 
-
-// function Forest() {
-  //Forest Audio
-  const forestSound = new Audio("./sound/Floresta.wav")
-
-  function forestSoundOn() {
-    forestSound.play()
-  }
-
-  function forestSoundOff() {
-    forestSound.pause()
-  }
-  buttonSoundForest.addEventListener("click", function () {
-    if (buttonSoundForest.classList.contains("soundOn")) {
-      forestSoundOff()
-      buttonSoundForest.classList.remove("soundOn")
-      pathForest.classList.remove("soundOn")
-     } else {
-      forestSoundOn()
-      buttonSoundForest.classList.add("soundOn")
-      pathForest.classList.add("soundOn")
-    }
-  })
-// }
-
-// function Rain() {
-  //Rain Audio
-  const rainSound = new Audio("./sound/Chuva.wav")
-
-  function rainSoundOn() {
-    rainSound.play()
-  }
-
-  function rainSoundOff() {
-    rainSound.pause()
-  }
-  buttonSoundRain.addEventListener("click", function () {
-    if (buttonSoundRain.classList.contains("soundOn")) {
-      rainSoundOff()
-      buttonSoundRain.classList.remove("soundOn")
-      pathRain.classList.remove("soundOn")
-    } else {
-      rainSoundOn()
-      buttonSoundRain.classList.add("soundOn")
-      pathRain.classList.add("soundOn")
-    }
-  })
-// }
-
-// function CoffeeShop() {
-  //CoffeeShop Audio
-  const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
-
-  function coffeeShopSoundOn() {
-    coffeeShopSound.play()
-  }
-
-  function coffeeShopSoundOff() {
-    coffeeShopSound.pause()
-  }
-  buttonSoundCoffeeShop.addEventListener("click", function () {
-    if (buttonSoundCoffeeShop.classList.contains("soundOn")) {
-      coffeeShopSoundOff()
-      buttonSoundCoffeeShop.classList.remove("soundOn")
-      pathCoffeeShop.classList.remove("soundOn")
-    } else {
-      coffeeShopSoundOn()
-      buttonSoundCoffeeShop.classList.add("soundOn")
-      pathCoffeeShop.classList.add("soundOn")
-    }
-  })
-// }
-
-// function FirePlace() {
-  //FiePlace Audio
-  const firePlaceSound = new Audio("./sound/Lareira.wav")
-
-  function firePlaceSoundOn() {
-    firePlaceSound.play()
-  }
-
-  function firePlaceSoundOff() {
-    firePlaceSound.pause()
-  }
-  buttonSoundFirePlace.addEventListener("click", function () {
-    if (buttonSoundFirePlace.classList.contains("soundOn")) {
-      firePlaceSoundOff()
-      buttonSoundFirePlace.classList.remove("soundOn")
-      pathFire.classList.remove("soundOn")
-    } else {
-      firePlaceSoundOn()
-      buttonSoundFirePlace.classList.add("soundOn")
-      pathFire.classList.add("soundOn")
-    }
-  })
-// }
-
-//função set time
-// time.addEventListener("click", function() {
-//   if (pathPlay.classList = "pressedButton") {
-//     getMinutes()
-//   }
-// })
-
-//função Play
-  buttonPlay.addEventListener("click", function () {
-    if (
-      pathPlay.classList.contains("pressedButton") &&
-      buttonPause.classList.contains("hide")
-    ) {
-      pathPlay.classList.remove("pressedButton")
-      buttonPlay.classList.add("hide")
-      buttonPause.classList.remove("hide")
-      buttonPause.classList.add("pressedButton")
-    } else {
-      pathPlay.classList.add("pressedButton")
-      countDown()
-    }
-  })
-
-  //função Pause
-  buttonPause.addEventListener("click", function () {
-    if (
-      buttonPause.classList.contains("pressedButton")
-    ) {
-      buttonPause.classList.add("hide")
-      buttonPause.classList.remove("pressedButton")
-      buttonPlay.classList.remove("hide")
-      pathPlay.classList.add("pressedButton")
-    } else {
-      pathPause.classList.add("pressedButton")
-    }
-  })
+//Ambience Sound variables
+const forestSound = new Audio("./sound/Floresta.wav")
+const rainSound = new Audio("./sound/Chuva.wav")
+const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
+const firePlaceSound = new Audio("./sound/Lareira.wav")
+const kitchenTimerSound = new Audio("./sound/kitchenTimer.mp3")
+let button
+let ambienceSound
+let imagePath
+let minutes
+let seconds
+let soundType
 
 
-//função Stop
-  buttonStop.addEventListener("click", function () {
-    if (pathStop.classList.contains("pressedButton")) {
-      
-      pathStop.classList.remove("pressedButton")
-    } else {
-      buttonPause.classList.add("hide")
-      buttonPlay.classList.remove("hide")
-      pathPlay.classList.remove("pressedButton")
-      pathStop.classList.add("pressedButton")
-    }
-  })
-
-//função Increase
-  buttonIncrease.addEventListener("click", function () {
-    if (pathIncrease.classList.contains("pressedButton")) {
-      
-      pathIncrease.classList.remove("pressedButton")
-    } else {
-      pathIncrease.classList.add("pressedButton")
-    }
-  })
-
-//função Descrease
-  buttonDecrease.addEventListener("click", function () {
-    if (pathDecrease.classList.contains("pressedButton")) {
-      pathDecrease.classList.remove("pressedButton")
-    } else {
-      pathDecrease.classList.add("pressedButton")
-    }
-  })
-
-  //countdown function
-
-function getMinutes() {
-    let newMinutes = Number(prompt("Quantos minutos?"))
-    minutesDisplay.textContent = newMinutes || "00"
+//Audio Funcions
+function ambienceSoundPlay(ambienceSound) {
+  ambienceSound.play()
+  button.classList.add("soundOn")
+  imagePath.classList.add("soundOn")
 }
 
+function ambienceSoundPause(ambienceSound) {
+  ambienceSound.pause()
+  button.classList.remove("soundOn")
+  imagePath.classList.remove("soundOn")
+}
+
+function toggleAmbienceSound(button, imagePath, ambienceSound) {
+  if (button.classList.contains("soundOn")) {
+    ambienceSoundPause(ambienceSound)
+  } else {
+    ambienceSoundPlay(ambienceSound)
+  }
+}
+
+
+
+// Sound button listener
+buttonSoundForest.addEventListener("click", function  (){
+  soundType = "forest"
+  soundButton(soundType)
+  toggleAmbienceSound(button, imagePath, ambienceSound)
+})
+
+buttonSoundRain.addEventListener("click", function () {
+  soundType = "rain"
+  soundButton(soundType)
+  toggleAmbienceSound(button, imagePath, ambienceSound)
+})
+
+buttonSoundCoffeeShop.addEventListener("click", function () {
+  soundType = "coffeeShop"
+  soundButton(soundType)
+  toggleAmbienceSound(button, imagePath, ambienceSound)
+})
+
+buttonSoundFirePlace.addEventListener("click", function () {
+  soundType = "firePlace"
+  soundButton(soundType)
+  toggleAmbienceSound(button, imagePath, ambienceSound)
+})
+
+
+function soundButton(soundType) {
+  switch (soundType) {
+    case "forest":
+      button = buttonSoundForest
+      imagePath = pathForest
+      ambienceSound = forestSound
+      break;
+    case "rain":
+      button = buttonSoundRain
+      imagePath = pathRain
+      ambienceSound = rainSound
+      break;
+    case "coffeeShop":
+      button = buttonSoundCoffeeShop
+      imagePath = pathCoffeeShop
+      ambienceSound = coffeeShopSound
+      break;
+    case "firePlace":
+      button = buttonSoundFirePlace
+      imagePath = pathFire
+      ambienceSound = firePlaceSound
+      break;
+  }
+}
+
+//função set time
+time.addEventListener("click", function () {
+  if (pathPlay.classList != "pressedButton") {
+    setMinutes()
+  }
+})
+
+//função Play
+buttonPlay.addEventListener("click", function () {
+  if (
+    pathPlay.classList.contains("pressedButton") &&
+    buttonPause.classList.contains("hide")
+  ) {
+    pathPlay.classList.remove("pressedButton")
+    buttonPlay.classList.add("hide")
+    buttonPause.classList.remove("hide")
+    buttonPause.classList.add("pressedButton")
+    
+  } else {
+    pathPlay.classList.add("pressedButton")
+    countDown()
+  }
+})
+
+//Botão Pause
+buttonPause.addEventListener("click", function () {
+  if (buttonPause.classList.contains("pressedButton")) {
+    buttonPause.classList.add("hide")
+    buttonPause.classList.remove("pressedButton")
+    buttonPlay.classList.remove("hide")
+    pathPlay.classList.add("pressedButton")
+  } else {
+    pathPause.classList.add("pressedButton")
+  }
+})
+
+//Botão Stop
+buttonStop.addEventListener("click", function () {
+  if (pathStop.classList.contains("pressedButton")) {
+    pathStop.classList.remove("pressedButton")
+  } else {
+    buttonPause.classList.add("hide")
+    buttonPlay.classList.remove("hide")
+    pathPlay.classList.remove("pressedButton")
+    pathStop.classList.add("pressedButton")
+    setTimeout(function () {
+      pathStop.classList.remove("pressedButton")
+    }, 120)
+  
+  }
+})
+//Botão Increase
+buttonIncrease.addEventListener("click", function () {
+  if (pathIncrease.classList.contains("pressedButton")) {
+    pathIncrease.classList.remove("pressedButton")
+  } else {
+    pathIncrease.classList.add("pressedButton")
+  }
+})
+
+//Botão Descrease
+buttonDecrease.addEventListener("click", function () {
+  if (pathDecrease.classList.contains("pressedButton")) {
+    pathDecrease.classList.remove("pressedButton")
+  } else {
+    pathDecrease.classList.add("pressedButton")
+  }
+})
+
+//Set minutes function
+function setMinutes() {
+  minutes = Number(prompt("Quantos minutos?"))
+  updateTimerDisplay(minutes, 0)
+}
+
+//Countdown Function
 function countDown() {
-  setTimeout(function() {
-    let seconds = Number(secondsDisplay.textContent)
+  setTimeout(function (minutes, seconds) {
+    minutes = Number(minutesDisplay.textContent)
+    seconds = Number(secondsDisplay.textContent)
+    
+    if (minutes <= 0 && seconds <= 1) {
+      resetControls()
+      secondsDisplay.textContent = "00"
+      kitchenTimerSound.play()
+      return
+    }
+    
     if (seconds <= 0) {
       seconds = 60
+      --minutes
     }
-  
-    secondsDisplay.textContent = seconds - 1
+    --seconds
+    updateTimerDisplay(minutes, seconds)
     countDown()
-    }, 1000)
-    
-  }
+  }, 1000)
+}
+
+//Reset controls function
+function resetControls() {
+  buttonPlay.classList.remove("hide")
+  buttonPause.classList.add("hide")
+  pathPlay.classList.remove("pressedButton")
+  pathStop.classList.remove("pressedButton")
+}
+// Update timer display function
+function updateTimerDisplay(minutes, seconds) {
+  minutesDisplay.textContent = String(minutes).padStart(2, "0")
+  secondsDisplay.textContent = String(seconds).padStart(2, "0")
+}
