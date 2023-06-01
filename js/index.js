@@ -31,13 +31,15 @@ const rainSound = new Audio("./sound/Chuva.wav")
 const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
 const firePlaceSound = new Audio("./sound/Lareira.wav")
 const kitchenTimerSound = new Audio("./sound/kitchenTimer.mp3")
+
+// variáveis declarativas
+let minutes = Number(minutesDisplay.textContent)
 let button
 let ambienceSound
 let imagePath
-let minutes
 let seconds
 let soundType
-
+let timerTimeOut
 
 //Audio Funcions
 function ambienceSoundPlay(ambienceSound) {
@@ -60,10 +62,8 @@ function toggleAmbienceSound(button, imagePath, ambienceSound) {
   }
 }
 
-
-
 // Sound button listener
-buttonSoundForest.addEventListener("click", function  (){
+buttonSoundForest.addEventListener("click", function () {
   soundType = "forest"
   soundButton(soundType)
   toggleAmbienceSound(button, imagePath, ambienceSound)
@@ -87,29 +87,28 @@ buttonSoundFirePlace.addEventListener("click", function () {
   toggleAmbienceSound(button, imagePath, ambienceSound)
 })
 
-
 function soundButton(soundType) {
   switch (soundType) {
     case "forest":
       button = buttonSoundForest
       imagePath = pathForest
       ambienceSound = forestSound
-      break;
+      break
     case "rain":
       button = buttonSoundRain
       imagePath = pathRain
       ambienceSound = rainSound
-      break;
+      break
     case "coffeeShop":
       button = buttonSoundCoffeeShop
       imagePath = pathCoffeeShop
       ambienceSound = coffeeShopSound
-      break;
+      break
     case "firePlace":
       button = buttonSoundFirePlace
       imagePath = pathFire
       ambienceSound = firePlaceSound
-      break;
+      break
   }
 }
 
@@ -126,11 +125,8 @@ buttonPlay.addEventListener("click", function () {
     pathPlay.classList.contains("pressedButton") &&
     buttonPause.classList.contains("hide")
   ) {
-    pathPlay.classList.remove("pressedButton")
-    buttonPlay.classList.add("hide")
-    buttonPause.classList.remove("hide")
-    buttonPause.classList.add("pressedButton")
-    
+    playPauseButton("play")
+    clearTimeout(timerTimeOut)
   } else {
     pathPlay.classList.add("pressedButton")
     countDown()
@@ -140,12 +136,11 @@ buttonPlay.addEventListener("click", function () {
 //Botão Pause
 buttonPause.addEventListener("click", function () {
   if (buttonPause.classList.contains("pressedButton")) {
-    buttonPause.classList.add("hide")
-    buttonPause.classList.remove("pressedButton")
-    buttonPlay.classList.remove("hide")
-    pathPlay.classList.add("pressedButton")
+    playPauseButton("pause")
+    countDown()
   } else {
     pathPause.classList.add("pressedButton")
+    clearTimeout(timerTimeOut)
   }
 })
 
@@ -154,14 +149,12 @@ buttonStop.addEventListener("click", function () {
   if (pathStop.classList.contains("pressedButton")) {
     pathStop.classList.remove("pressedButton")
   } else {
-    buttonPause.classList.add("hide")
-    buttonPlay.classList.remove("hide")
-    pathPlay.classList.remove("pressedButton")
-    pathStop.classList.add("pressedButton")
+    resetControls()
     setTimeout(function () {
       pathStop.classList.remove("pressedButton")
     }, 120)
-  
+    clearTimeout(timerTimeOut)
+    resetTimer()
   }
 })
 //Botão Increase
@@ -170,6 +163,11 @@ buttonIncrease.addEventListener("click", function () {
     pathIncrease.classList.remove("pressedButton")
   } else {
     pathIncrease.classList.add("pressedButton")
+    setTimeout(function () {
+      pathIncrease.classList.remove("pressedButton")
+    }, 120)
+    minutes = minutes + 5
+    updateTimerDisplay(minutes, 0)
   }
 })
 
@@ -179,28 +177,40 @@ buttonDecrease.addEventListener("click", function () {
     pathDecrease.classList.remove("pressedButton")
   } else {
     pathDecrease.classList.add("pressedButton")
+    setTimeout(function () {
+      pathDecrease.classList.remove("pressedButton")
+    }, 120)
+    minutes = minutes - 5
+    updateTimerDisplay(minutes, 0)
   }
 })
 
 //Set minutes function
 function setMinutes() {
-  minutes = Number(prompt("Quantos minutos?"))
-  updateTimerDisplay(minutes, 0)
+  let newMinutes = Number(prompt("Quantos minutos?"))
+  if (!newMinutes) {
+    clearTimeout(timerTimeOut)
+    resetControls()
+    resetTimer()
+  } else {
+    minutes = newMinutes
+    updateTimerDisplay(minutes, 0)
+  }
 }
 
 //Countdown Function
 function countDown() {
-  setTimeout(function (minutes, seconds) {
+  timerTimeOut = setTimeout(function (minutes, seconds) {
     minutes = Number(minutesDisplay.textContent)
     seconds = Number(secondsDisplay.textContent)
-    
+
     if (minutes <= 0 && seconds <= 1) {
       resetControls()
       secondsDisplay.textContent = "00"
       kitchenTimerSound.play()
       return
     }
-    
+
     if (seconds <= 0) {
       seconds = 60
       --minutes
@@ -222,4 +232,25 @@ function resetControls() {
 function updateTimerDisplay(minutes, seconds) {
   minutesDisplay.textContent = String(minutes).padStart(2, "0")
   secondsDisplay.textContent = String(seconds).padStart(2, "0")
+}
+
+function resetTimer() {
+  updateTimerDisplay(minutes, 0)
+}
+
+function playPauseButton(buttonType) {
+  switch (buttonType) {
+    case "play":
+      buttonPause.classList.remove("hide")
+      buttonPause.classList.add("pressedButton")
+      pathPlay.classList.remove("pressedButton")
+      buttonPlay.classList.add("hide")
+      break
+    case "pause":
+      buttonPause.classList.add("hide")
+      buttonPause.classList.remove("pressedButton")
+      buttonPlay.classList.remove("hide")
+      pathPlay.classList.add("pressedButton")
+      break
+  }
 }
