@@ -1,11 +1,3 @@
-import {
-buttonPlay,
-buttonPause,
-pathPlay,
-pathPause,
-
-} from "./elements.js"
-
 export default function controls() {
 
   //Reset controls function
