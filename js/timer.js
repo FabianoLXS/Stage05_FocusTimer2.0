@@ -6,7 +6,10 @@ export function Timer({
   minutesDisplay,
   secondsDisplay,
   kitchenTimerSound,
+  minutes,
+  seconds,
 }) {
+  
   //função set time
   time.addEventListener("click", function () {
     if (pathPlay.classList != "pressedButton") {
