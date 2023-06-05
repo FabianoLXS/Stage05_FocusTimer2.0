@@ -120,7 +120,20 @@ let timerTimeOut
             break
           }
         }     
-   
+
+export const timer = Timer({
+  time,
+  pathPlay,
+  minutesDisplay,
+  secondsDisplay,
+  kitchenTimerSound,
+  timerTimeOut,
+  minutes,
+  seconds,
+  // controls,
+})
+
+
 const controls = Controls({
   buttonPlay,
   buttonPause,
@@ -132,17 +145,9 @@ const controls = Controls({
   pathIncrease,
   pathDecrease,
   timerTimeOut,
+  timer,
+  minutes
 })        
 
-export const timer = Timer({
-  time,
-  pathPlay,
-  minutesDisplay,
-  secondsDisplay,
-  kitchenTimerSound,
-  timerTimeOut,
-  minutes,
-  seconds,
-  controls,
-})
+
 

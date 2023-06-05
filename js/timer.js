@@ -9,7 +9,7 @@ export function Timer({
   kitchenTimerSound,
   minutes,
   seconds,
-  controls
+  controls,
 }) {
   
   //função set time
@@ -65,11 +65,16 @@ export function Timer({
     }, 1000)
   }
 
+  function clearTime() {
+    clearTimeout(timerTimeOut)
+  }
+
 return {
   countDown,
   resetTimer,
   updateTimerDisplay,
-  setMinutes
+  setMinutes,
+  clearTime
 }
 
 }

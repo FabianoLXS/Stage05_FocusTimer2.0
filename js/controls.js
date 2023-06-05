@@ -8,8 +8,11 @@ export function Controls({
   pathStop,
   pathIncrease,
   pathDecrease,
-
+  timer,
+  minutes,
 }) {
+
+
 
   //Reset controls function
   function resetControls() {
@@ -43,21 +46,21 @@ export function Controls({
       buttonPause.classList.contains("hide")
     ) {
       playPauseButton("play")
-      clearTimeout(timerTimeOut)
+      timer.clearTime()
     } else {
       pathPlay.classList.add("pressedButton")
-      countDown()
+      timer.countDown()
     }
   })
   
   //Botão Pause
   buttonPause.addEventListener("click", function () {
     if (buttonPause.classList.contains("pressedButton")) {
+      timer.countDown()
       playPauseButton("pause")
-      countDown()
     } else {
       pathPause.classList.add("pressedButton")
-      clearTimeout(timerTimeOut)
+      timer.clearTime()
     }
   })
   
@@ -70,8 +73,8 @@ export function Controls({
       setTimeout(function () {
         pathStop.classList.remove("pressedButton")
       }, 120)
-      clearTimeout(timerTimeOut)
-      resetTimer()
+      timer.clearTime()
+      timer.resetTimer()
     }
   })
   //Botão Increase
@@ -84,7 +87,7 @@ export function Controls({
         pathIncrease.classList.remove("pressedButton")
       }, 120)
       minutes = minutes + 5
-      updateTimerDisplay(minutes, 0)
+      timer.updateTimerDisplay(minutes, 0)
     }
   })
   
@@ -98,9 +101,10 @@ export function Controls({
         pathDecrease.classList.remove("pressedButton")
       }, 120)
       minutes = minutes - 5
-      updateTimerDisplay(minutes, 0)
+      timer.updateTimerDisplay(minutes, 0)
     }
   })
+  
 return {
   resetControls,
   playPauseButton, 
