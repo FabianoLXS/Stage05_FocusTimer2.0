@@ -104,10 +104,11 @@ export function Controls({
       timer.updateTimerDisplay(minutes, 0)
     }
   })
-  
+
 return {
   resetControls,
-  playPauseButton, 
+  playPauseButton,
+  
 }
 
 }

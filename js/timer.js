@@ -74,7 +74,8 @@ return {
   resetTimer,
   updateTimerDisplay,
   setMinutes,
-  clearTime
+  clearTime,
+  
 }
 
 }
