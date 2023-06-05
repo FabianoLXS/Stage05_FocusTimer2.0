@@ -1,3 +1,4 @@
+
 export function Timer({
   time,
   pathPlay,
@@ -8,6 +9,7 @@ export function Timer({
   kitchenTimerSound,
   minutes,
   seconds,
+  controls
 }) {
   
   //função set time

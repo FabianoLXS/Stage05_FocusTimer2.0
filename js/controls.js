@@ -1,4 +1,15 @@
-export default function controls() {
+export function Controls({
+  buttonPlay,
+  buttonPause,
+  buttonStop,
+  buttonIncrease,
+  buttonDecrease,
+  pathPlay,
+  pathStop,
+  pathIncrease,
+  pathDecrease,
+
+}) {
 
   //Reset controls function
   function resetControls() {
@@ -90,4 +101,9 @@ export default function controls() {
       updateTimerDisplay(minutes, 0)
     }
   })
+return {
+  resetControls,
+  playPauseButton, 
+}
+
 }

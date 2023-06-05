@@ -1,49 +1,6 @@
-// import controls from "./controls.js"
-// import sound from "./sound.js"
-// import {
-  // time,
-  // minutesDisplay,
-  // secondsDisplay,
-  // buttonPlay,
-  // buttonPause,
-  // buttonStop,
-  // buttonIncrease,
-  // buttonDecrease,
-  // buttonSoundForest,
-  // buttonSoundRain,
-  // buttonSoundCoffeeShop,
-  // buttonSoundFirePlace,
-  // pathForest,
-  // pathRain,
-  // pathCoffeeShop,
-  // pathFire,
-  // pathPlay,
-  // pathStop,
-  // pathIncrease,
-  // pathDecrease,
-  // forestSound,
-  // rainSound,
-  // coffeeShopSound,
-  // firePlaceSound,
-  // kitchenTimerSound,
-  // minutes,
-  // button,
-  // ambienceSound,
-  // imagePath,
-  // seconds,
-  // soundType,
-  // timerTimeOut,
-// } from "./elements.js"
-// import events from "./events.js"
-// import sound from "./sound.js"
-// import timer from "./timer.js"
-
-
-
 
 import { Timer } from "./timer.js"
-
-
+import { Controls } from "./controls.js"
 
 //Timer variables
 const time = document.querySelector(".time")
@@ -56,42 +13,42 @@ const buttonStop = document.querySelector(".stop")
 const buttonIncrease = document.querySelector(".increase")
 const buttonDecrease = document.querySelector(".decrease")
 
-  //Sound variables
-  const buttonSoundForest = document.querySelector(".forestButton")
-  const buttonSoundRain = document.querySelector(".rainButton")
-  const buttonSoundCoffeeShop = document.querySelector(".coffeeShopButton")
-  const buttonSoundFirePlace = document.querySelector(".firePlaceButton")
+//Sound variables
+const buttonSoundForest = document.querySelector(".forestButton")
+const buttonSoundRain = document.querySelector(".rainButton")
+const buttonSoundCoffeeShop = document.querySelector(".coffeeShopButton")
+const buttonSoundFirePlace = document.querySelector(".firePlaceButton")
   
-  //Buttons Images Variables
-  const pathForest = document.querySelector("path.forestButton")
-  const pathRain = document.querySelector("path.rainButton")
-  const pathCoffeeShop = document.querySelector("path.coffeeShopButton")
-  const pathFire = document.querySelector("path.firePlaceButton")
-  const pathPlay = document.querySelector("path.play")
-  const pathStop = document.querySelector("path.stop")
-  const pathIncrease = document.querySelector("path.increase")
-  const pathDecrease = document.querySelector("path.decrease")
-  
-  //Ambience Sound variables
-  const forestSound = new Audio("./sound/Floresta.wav")
-  const rainSound = new Audio("./sound/Chuva.wav")
-  const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
-  const firePlaceSound = new Audio("./sound/Lareira.wav")
-  const kitchenTimerSound = new Audio("./sound/kitchenTimer.mp3")
-  
-  // variáveis declarativas
-  let minutes = Number(minutesDisplay.textContent)
-  let button
-  let ambienceSound
-  let imagePath
-  let seconds
-  let soundType
-  let timerTimeOut
 
+//Buttons Images Variables
+const pathForest = document.querySelector("path.forestButton")
+const pathRain = document.querySelector("path.rainButton")
+const pathCoffeeShop = document.querySelector("path.coffeeShopButton")
+const pathFire = document.querySelector("path.firePlaceButton")
+const pathPlay = document.querySelector("path.play")
+const pathStop = document.querySelector("path.stop")
+const pathIncrease = document.querySelector("path.increase")
+const pathDecrease = document.querySelector("path.decrease")
   
+
+//Ambience Sound variables
+const forestSound = new Audio("./sound/Floresta.wav")
+const rainSound = new Audio("./sound/Chuva.wav")
+const coffeeShopSound = new Audio("./sound/Cafeteria.wav")
+const firePlaceSound = new Audio("./sound/Lareira.wav")
+const kitchenTimerSound = new Audio("./sound/kitchenTimer.mp3")
   
+
+// variáveis declarativas
+let minutes = Number(minutesDisplay.textContent)
+let button
+let ambienceSound
+let imagePath
+let seconds
+let soundType
+let timerTimeOut
   
-  
+
   // Sound button listener
   buttonSoundForest.addEventListener("click", function () {
     soundType = "forest"
@@ -117,8 +74,7 @@ const buttonDecrease = document.querySelector(".decrease")
     toggleAmbienceSound(button, imagePath, ambienceSound)
   })
   
-  
-  
+
   //Audio Funcions
   function ambienceSoundPlay(ambienceSound) {
     ambienceSound.play()
@@ -163,17 +119,30 @@ const buttonDecrease = document.querySelector(".decrease")
             ambienceSound = firePlaceSound
             break
           }
-        }
-        
-        
-        const timer = Timer({
-          time,
-          pathPlay,
-          minutesDisplay,
-          secondsDisplay,
-          kitchenTimerSound,
-          timerTimeOut,
-          minutes,
-          seconds
-        })
-        
+        }     
+   
+const controls = Controls({
+  buttonPlay,
+  buttonPause,
+  buttonStop,
+  buttonIncrease,
+  buttonDecrease,
+  pathPlay,
+  pathStop,
+  pathIncrease,
+  pathDecrease,
+  timerTimeOut,
+})        
+
+export const timer = Timer({
+  time,
+  pathPlay,
+  minutesDisplay,
+  secondsDisplay,
+  kitchenTimerSound,
+  timerTimeOut,
+  minutes,
+  seconds,
+  controls,
+})
+
