@@ -146,7 +146,8 @@ const controls = Controls({
   pathDecrease,
   timerTimeOut,
   timer,
-  minutes
+  minutes,
+  minutesDisplay,
 })        
 
 

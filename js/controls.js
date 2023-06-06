@@ -10,6 +10,7 @@ export function Controls({
   pathDecrease,
   timer,
   minutes,
+  minutesDisplay,
 }) {
 
 
@@ -74,7 +75,7 @@ export function Controls({
         pathStop.classList.remove("pressedButton")
       }, 120)
       timer.clearTime()
-      timer.resetTimer()
+      timer.resetTimer(minutes)
     }
   })
   //Botão Increase
@@ -86,6 +87,7 @@ export function Controls({
       setTimeout(function () {
         pathIncrease.classList.remove("pressedButton")
       }, 120)
+      minutes = Number(minutesDisplay.textContent)
       minutes = minutes + 5
       timer.updateTimerDisplay(minutes, 0)
     }
@@ -100,6 +102,7 @@ export function Controls({
       setTimeout(function () {
         pathDecrease.classList.remove("pressedButton")
       }, 120)
+      minutes = Number(minutesDisplay.textContent)
       minutes = minutes - 5
       timer.updateTimerDisplay(minutes, 0)
     }
@@ -108,7 +111,6 @@ export function Controls({
 return {
   resetControls,
   playPauseButton,
-  
 }
 
 }

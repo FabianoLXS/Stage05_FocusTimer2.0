@@ -38,7 +38,7 @@ export function Timer({
     secondsDisplay.textContent = String(seconds).padStart(2, "0")
   }
   
-  function resetTimer() {
+  function resetTimer(minutes) {
     updateTimerDisplay(minutes, 0)
   }
   
