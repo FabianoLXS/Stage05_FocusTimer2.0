@@ -10,6 +10,7 @@ export function Timer({
   minutes,
   seconds,
   controls,
+  playPauseButton,
 }) {
   
   //função set time
@@ -29,6 +30,7 @@ export function Timer({
     } else {
       minutes = newMinutes
       updateTimerDisplay(minutes, 0)
+      controls.playPauseButton("play")
     }
   }
   

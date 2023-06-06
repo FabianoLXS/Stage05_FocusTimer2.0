@@ -63,19 +63,6 @@ export function Controls({
     }
   })
   
-  //Botão Stop
-  buttonStop.addEventListener("click", function () {
-    if (pathStop.classList.contains("pressedButton")) {
-      pathStop.classList.remove("pressedButton")
-    } else {
-      resetControls()
-      setTimeout(function () {
-        pathStop.classList.remove("pressedButton")
-      }, 120)
-      timer.clearTime()
-      timer.resetTimer(minutes)
-    }
-  })
   //Botão Increase
   buttonIncrease.addEventListener("click", function () {
     if (pathIncrease.classList.contains("pressedButton")) {
@@ -105,10 +92,24 @@ export function Controls({
       timer.updateTimerDisplay(minutes, 0)
     }
   })
-
-return {
-  resetControls,
-  playPauseButton,
-}
-
+  
+  //Botão Stop
+  buttonStop.addEventListener("click", function () {
+    if (pathStop.classList.contains("pressedButton")) {
+      pathStop.classList.remove("pressedButton")
+    } else {
+      resetControls()
+      setTimeout(function () {
+        pathStop.classList.remove("pressedButton")
+      }, 120)
+      timer.clearTime()
+      timer.resetTimer(minutes)
+    }
+  })
+  
+  return {
+    resetControls,
+    playPauseButton,
+  }
+  
 }
