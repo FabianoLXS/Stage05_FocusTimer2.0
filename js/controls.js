@@ -13,8 +13,6 @@ export function Controls({
   minutesDisplay,
 }) {
 
-
-
   //Reset controls function
   function resetControls() {
     buttonPlay.classList.remove("hide")
